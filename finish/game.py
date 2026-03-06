@@ -232,58 +232,117 @@ class GameWindow(QWidget):
         self.setGeometry(100, 100, 900, 600)
         self.setMinimumSize(800, 500)
         
-        # Устанавливаем стиль
+        # Устанавливаем фиолетово-черный стиль
         self.setStyleSheet("""
             QWidget {
-                background-color: #f0f0f0;
+                background-color: #1a1a1a;
                 font-family: Arial;
+                color: #e0e0e0;
             }
             QPushButton {
-                background-color: #4CAF50;
+                background-color: #9b59b6;
                 color: white;
                 border: none;
                 padding: 10px 20px;
                 font-size: 14px;
                 border-radius: 5px;
                 min-width: 100px;
+                font-weight: bold;
             }
             QPushButton:hover {
-                background-color: #45a049;
+                background-color: #8e44ad;
             }
             QPushButton:pressed {
-                background-color: #3d8b40;
+                background-color: #6c3483;
             }
             QPushButton:disabled {
-                background-color: #cccccc;
+                background-color: #4a4a4a;
+                color: #888888;
             }
             QGroupBox {
                 font-size: 16px;
                 font-weight: bold;
-                border: 2px solid #4CAF50;
+                border: 2px solid #9b59b6;
                 border-radius: 5px;
                 margin-top: 10px;
                 padding-top: 10px;
+                color: #e0e0e0;
             }
             QGroupBox::title {
                 subcontrol-origin: margin;
                 left: 10px;
                 padding: 0 5px 0 5px;
+                color: #9b59b6;
             }
             QLabel {
                 font-size: 14px;
+                color: #e0e0e0;
             }
             QRadioButton {
                 font-size: 14px;
                 padding: 5px;
+                color: #e0e0e0;
+            }
+            QRadioButton::indicator {
+                width: 15px;
+                height: 15px;
+            }
+            QRadioButton::indicator:checked {
+                background-color: #9b59b6;
+                border: 2px solid #9b59b6;
+                border-radius: 8px;
             }
             QLineEdit {
                 padding: 8px;
                 font-size: 14px;
-                border: 2px solid #ddd;
+                border: 2px solid #9b59b6;
                 border-radius: 5px;
+                background-color: #2d2d2d;
+                color: #e0e0e0;
             }
             QLineEdit:focus {
-                border-color: #4CAF50;
+                border-color: #e0e0e0;
+            }
+            QProgressBar {
+                border: 2px solid #9b59b6;
+                border-radius: 5px;
+                text-align: center;
+                color: #e0e0e0;
+                background-color: #2d2d2d;
+            }
+            QProgressBar::chunk {
+                background-color: #9b59b6;
+                border-radius: 3px;
+            }
+            QTextEdit {
+                background-color: #2d2d2d;
+                border: 2px solid #9b59b6;
+                border-radius: 5px;
+                padding: 10px;
+                font-size: 14px;
+                color: #e0e0e0;
+            }
+            QMenuBar {
+                background-color: #1a1a1a;
+                color: #e0e0e0;
+            }
+            QMenuBar::item {
+                background-color: #1a1a1a;
+                color: #e0e0e0;
+                padding: 5px 10px;
+            }
+            QMenuBar::item:selected {
+                background-color: #9b59b6;
+                color: white;
+            }
+            QMenu {
+                background-color: #2d2d2d;
+                color: #e0e0e0;
+                border: 1px solid #9b59b6;
+            }
+            QMenu::item:selected {
+                background-color: #9b59b6;
+                color: white;
             }
         """)
         
@@ -295,7 +354,7 @@ class GameWindow(QWidget):
         title_label.setStyleSheet("""
             font-size: 36px;
             font-weight: bold;
-            color: #4CAF50;
+            color: #9b59b6;
             padding: 20px;
             qproperty-alignment: AlignCenter;
         """)
@@ -304,7 +363,7 @@ class GameWindow(QWidget):
         subtitle = QLabel('Изучай языки в игровой форме!')
         subtitle.setStyleSheet("""
             font-size: 18px;
-            color: #666;
+            color: #b0b0b0;
             padding: 10px;
             qproperty-alignment: AlignCenter;
         """)
@@ -422,13 +481,13 @@ class GameWindow(QWidget):
         info_layout = QHBoxLayout()
         
         self.score_label = QLabel("Счет: 0")
-        self.score_label.setStyleSheet("font-size: 18px; font-weight: bold; color: #4CAF50;")
+        self.score_label.setStyleSheet("font-size: 18px; font-weight: bold; color: #9b59b6;")
         
         self.lives_label = QLabel("Жизни: ❤️❤️❤️")
-        self.lives_label.setStyleSheet("font-size: 18px; font-weight: bold; color: #ff4444;")
+        self.lives_label.setStyleSheet("font-size: 18px; font-weight: bold; color: #ff6b6b;")
         
         self.progress_label = QLabel("Слово 0/0")
-        self.progress_label.setStyleSheet("font-size: 16px; color: #666;")
+        self.progress_label.setStyleSheet("font-size: 16px; color: #b0b0b0;")
         
         info_layout.addWidget(self.score_label)
         info_layout.addStretch()
@@ -442,8 +501,8 @@ class GameWindow(QWidget):
         card_widget = QFrame()
         card_widget.setStyleSheet("""
             QFrame {
-                background-color: white;
-                border: 2px solid #4CAF50;
+                background-color: #2d2d2d;
+                border: 2px solid #9b59b6;
                 border-radius: 10px;
                 padding: 20px;
                 margin: 20px;
@@ -452,10 +511,10 @@ class GameWindow(QWidget):
         card_layout = QVBoxLayout()
         
         self.task_label = QLabel("Задание появится здесь")
-        self.task_label.setStyleSheet("font-size: 24px; font-weight: bold; color: #333; qproperty-alignment: AlignCenter;")
+        self.task_label.setStyleSheet("font-size: 24px; font-weight: bold; color: #b0b0b0; qproperty-alignment: AlignCenter;")
         
         self.word_label = QLabel("")
-        self.word_label.setStyleSheet("font-size: 36px; font-weight: bold; color: #4CAF50; qproperty-alignment: AlignCenter;")
+        self.word_label.setStyleSheet("font-size: 36px; font-weight: bold; color: #9b59b6; qproperty-alignment: AlignCenter;")
         
         card_layout.addWidget(self.task_label)
         card_layout.addWidget(self.word_label)
@@ -477,7 +536,7 @@ class GameWindow(QWidget):
         self.record_progress.setVisible(False)
         
         self.record_status = QLabel("")
-        self.record_status.setStyleSheet("font-size: 14px; color: #666; qproperty-alignment: AlignCenter;")
+        self.record_status.setStyleSheet("font-size: 14px; color: #b0b0b0; qproperty-alignment: AlignCenter;")
         
         oral_layout.addWidget(self.record_btn)
         oral_layout.addWidget(self.record_progress)
@@ -568,18 +627,19 @@ class GameWindow(QWidget):
         layout = QVBoxLayout()
         
         title = QLabel("📊 Статистика игр")
-        title.setStyleSheet("font-size: 24px; font-weight: bold; color: #4CAF50; qproperty-alignment: AlignCenter;")
+        title.setStyleSheet("font-size: 24px; font-weight: bold; color: #9b59b6; qproperty-alignment: AlignCenter;")
         layout.addWidget(title)
         
         self.stats_text = QTextEdit()
         self.stats_text.setReadOnly(True)
         self.stats_text.setStyleSheet("""
             QTextEdit {
-                background-color: white;
-                border: 2px solid #4CAF50;
+                background-color: #2d2d2d;
+                border: 2px solid #9b59b6;
                 border-radius: 5px;
                 padding: 10px;
                 font-size: 14px;
+                color: #e0e0e0;
             }
         """)
         layout.addWidget(self.stats_text)
